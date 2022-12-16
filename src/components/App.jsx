@@ -55,6 +55,7 @@ export class App extends Component {
 
   handleSubmit = (values, { resetForm }) => {
     this.addContact(values);
+
     resetForm();
   };
 
@@ -69,8 +70,9 @@ export class App extends Component {
   };
 
   render() {
-    const filterContacts = this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    const { contacts, filter } = this.state;
+    const filterContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
     );
     return (
       <>
@@ -98,7 +100,7 @@ export class App extends Component {
           >
             Contacts
           </h2>
-          <Filter filter={this.state.filter} handleFilter={this.handleFilter} />
+          <Filter filter={filter} handleFilter={this.handleFilter} />
           <ContactList
             contacts={filterContacts}
             handleDelete={this.handleDelete}
