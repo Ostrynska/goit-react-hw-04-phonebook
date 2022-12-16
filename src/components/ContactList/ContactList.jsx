@@ -12,16 +12,16 @@ import { MdContactPage } from 'react-icons/md';
 const ContactList = ({ contacts, handleDelete }) => {
   return (
     <ContactsList>
-      {contacts.map(contact => (
-        <ContactsListItem key={contact.id}>
+      {contacts.map(({ id, name, number }) => (
+        <ContactsListItem key={id}>
           <IconContext.Provider value={{ color: '#d85841' }}>
             <MdContactPage />
           </IconContext.Provider>
           <ContactsListInf>
-            <b>{contact.name}: </b>
-            {contact.number}
+            <b>{name}: </b>
+            {number}
           </ContactsListInf>
-          <ContactsListButton onClick={() => handleDelete(contact.id)}>
+          <ContactsListButton onClick={() => handleDelete(id)}>
             <IoTrashBinOutline />
           </ContactsListButton>
         </ContactsListItem>
